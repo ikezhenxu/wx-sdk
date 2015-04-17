@@ -29,6 +29,16 @@
 	<target name="init" description="初始化目录">
 	</target>
 
+	<target name="copy-conf" description="复制配置文件">
+		<copy todir="${web.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.xml" />
+				<include name="**/*.properties" />
+				<include name="**/*.json" />
+			</fileset>
+		</copy>
+	</target>
+
 	<target name="compile" description="编译">
 		<mkdir dir="${dest.dir}" />
 		<javac srcdir="${src.dir}" destdir="${dest.dir}"
