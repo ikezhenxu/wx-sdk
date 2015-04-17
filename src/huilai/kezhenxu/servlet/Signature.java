@@ -25,6 +25,10 @@ public class Signature extends HttpServlet {
 		String timestamp  = needString ( request, "timestamp" );
 		String nonce      = needString ( request, "nonce" );
 		String echostring = needString ( request, "echostr" );
+		System.out.println (signature);
+		System.out.println (timestamp);
+		System.out.println (nonce);
+		System.out.println (echostring);
 		try {
 			if ( new SignatureChecker ().check ( signature, timestamp, nonce ) ) {
 				response.getWriter ().write ( echostring );
