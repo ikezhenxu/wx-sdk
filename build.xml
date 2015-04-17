@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="wx-sdk" basedir=".">
+<project name="wxsdk" basedir=".">
 	<description>微信框架</description>
 
 	<property name="project.dir" value="." />
 	<property name="src.dir" value="src" />
-	<property name="gen.dir" value="${project.dir}/gen" />
 	<property name="javadoc.dir" value="javadoc" />
 	<property name="web.dir" value="web" />
 	<property name="web.inf" value="${web.dir}/WEB-INF" />
+	<property name="dest.dir" value="${web.inf}/classes" />
 	<property name="runtime.lib" value="${web.inf}/lib" />
 	<property name="compile.dep" value="lib" />
 	<property name="version" value="0.1" />
@@ -19,7 +19,7 @@
 		<fileset id="compile-time" dir="${compile.dep}">
 			<include name="*.jar" />
 		</fileset>
-		<pathelement path="${gen.dir}" />
+		<pathelement path="${dest.dir}" />
 	</path>
 
 	<pathconvert property="web.absolute.dir">
@@ -30,8 +30,8 @@
 	</target>
 
 	<target name="compile" description="编译">
-		<mkdir dir="${gen.dir}" />
-		<javac srcdir="${src.dir}" destdir="${gen.dir}"
+		<mkdir dir="${dest.dir}" />
+		<javac srcdir="${src.dir}" destdir="${dest.dir}"
 		       failonerror="true" debug="true"
 		       includeantruntime="false" encoding="UTF-8">
 			<classpath refid="classpath" />
