@@ -30,7 +30,7 @@ public class WxButtonBuilder {
 			System.out.println ( accessToken );
 			String url = String.format ( API_URL_FORMAT, accessToken );
 			String returnContent = Request.Post ( url )
-			                              .body ( new StringEntity ( buttonWrapper.toString () ) )
+			                              .body ( new StringEntity ( buttonWrapper.toString (), "UTF-8" ) )
 			                              .execute ()
 			                              .returnContent ()
 			                              .asString ();
