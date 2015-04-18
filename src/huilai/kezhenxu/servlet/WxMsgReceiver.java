@@ -26,7 +26,7 @@ public class WxMsgReceiver extends HttpServlet {
 			System.out.println ( msg );
 			System.out.println ( "--------------" );
 		} catch ( Exception e ) {
-
+			e.printStackTrace ();
 		} finally {
 
 		}
