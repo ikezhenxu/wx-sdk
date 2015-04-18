@@ -8,6 +8,7 @@ import java.util.Properties;
  */
 public class WxFactory {
 
+	public static final String TOKEN             = "hl.token";
 	public static final String ACCESS_TOKEN_LIFE = "hl.access.token.refresh.interval";
 	public static final String APP_ID            = "hl.app.id";
 	public static final String SECRET            = "hl.secret";

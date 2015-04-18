@@ -24,7 +24,9 @@ public class SignatureChecker {
 	                       String timestamp,
 	                       String nonce ) {
 
-		String[] strings = { signature, timestamp, nonce };
+		String token = wxFactory.getProperty ( WxFactory.TOKEN );
+
+		String[] strings = { token, timestamp, nonce };
 		Arrays.sort ( strings );
 		String string = strings[ 0 ] + strings[ 1 ] + strings[ 2 ];
 
