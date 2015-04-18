@@ -7,7 +7,8 @@ package huilai.kezhenxu.message;
 public enum WxMsgType {
 	TEXT ( "text" ), IMAGE ( "image" ), VOICE ( "voice" ),
 	VIDEO ( "video" ), SHORT_VIDEO ( "shortvideo" ),
-	LOCATION ( "location" ), LINK ( "link" ), EVENT ( "event" );
+	LOCATION ( "location" ), LINK ( "link" ), EVENT ( "event" ),
+	MUSIC ( "music" ), NEWS ( "news" );
 
 	private String typeName;
 

@@ -22,7 +22,7 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 	protected String hqMusicUrl; // 高音质，wifi 优先播放
 	protected String thumbMediaId;
 
-	protected WxMsgSendType sendType;
+	protected WxMsgType sendType;
 
 	public WxMsgToSend () {
 
@@ -84,11 +84,11 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 		this.thumbMediaId = thumbMediaId;
 	}
 
-	public WxMsgSendType getSendType () {
+	public WxMsgType getSendType () {
 		return sendType;
 	}
 
-	public void setSendType ( WxMsgSendType sendType ) {
+	public void setSendType ( WxMsgType sendType ) {
 		this.sendType = sendType;
 	}
 

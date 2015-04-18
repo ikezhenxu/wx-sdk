@@ -75,12 +75,7 @@ public class WxBaseMsg implements Serializable {
 		       .append ( "</FromUserName>" )
 		       .append ( "<CreateTime>" )
 		       .append ( time == null ? "" : time )
-		       .append ( "</CreateTime>" )
-		       .append ( "<MsgType>" )
-		       .append ( "<![CDATA[" )
-		       .append ( type == null ? "" : type.getTypeName () )
-		       .append ( "]]>" )
-		       .append ( "</MsgType>" );
+		       .append ( "</CreateTime>" );
 		if ( withRootNode ) {
 			builder.append ( "</xml>" );
 		}

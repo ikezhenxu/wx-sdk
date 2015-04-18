@@ -1,7 +1,7 @@
 package test;
 
-import huilai.kezhenxu.message.WxMsgSendType;
 import huilai.kezhenxu.message.WxMsgToSend;
+import huilai.kezhenxu.message.WxMsgType;
 
 import java.io.IOException;
 
@@ -18,7 +18,7 @@ public class TestCases {
 		//						.asString ()
 		//		);
 		WxMsgToSend send = new WxMsgToSend ();
-		send.setSendType ( WxMsgSendType.TEXT );
+		send.setSendType ( WxMsgType.TEXT );
 		send.setContent ( "HelloWorld" );
 		send.setId ( "1234456" );
 		send.setTitle ( "title" );
