@@ -5,15 +5,7 @@ import java.io.Serializable;
 /**
  * Created by kezhenxu on 4/18/15.
  */
-public class WxMsg implements Serializable {
-
-	// ----------- common
-	protected WxMsgType type;
-	protected String    id;
-	protected String    to;
-	protected String    from;
-	protected String    time;
-	// ----------- common
+public class WxMsg extends WxBaseMsg implements Serializable {
 
 	// 文本消息
 	protected String content;
@@ -30,64 +22,22 @@ public class WxMsg implements Serializable {
 	protected String url;
 	protected String description;
 
-	// 地址消息
+	// 地址消息，发送地址，分享地址的消息
 	protected String locationX;
 	protected String locationY;
 	protected String label;
 
-	enum WxMsgType {
-		TEXT ( "text" ), IMAGE ( "image" ), VOICE ( "voice" ),
-		VIDEO ( "video" ), SHORT_VIDEO ( "shortvideo" ),
-		LOCATION ( "location" ), LINK ( "link" );
-
-		private String typeName;
-
-		WxMsgType ( String typeName ) {
-			this.typeName = typeName;
-		}
-	}
+	// 事件
+	protected WxMsgEventType event;
+	protected String         eventKey;
+	protected String         ticket;
+	// 地址事件，同意公众号获取地址位置后
+	// 每次进入公众号都会上报地址时间
+	protected String         latitude;
+	protected String         longitude;
+	protected String         precision;
 
 	public WxMsg () {
-	}
-
-	public String getId () {
-		return id;
-	}
-
-	public void setId ( String id ) {
-		this.id = id;
-	}
-
-	public String getTo () {
-		return to;
-	}
-
-	public void setTo ( String to ) {
-		this.to = to;
-	}
-
-	public String getFrom () {
-		return from;
-	}
-
-	public void setFrom ( String from ) {
-		this.from = from;
-	}
-
-	public String getTime () {
-		return time;
-	}
-
-	public void setTime ( String time ) {
-		this.time = time;
-	}
-
-	public WxMsgType getType () {
-		return type;
-	}
-
-	public void setType ( WxMsgType type ) {
-		this.type = type;
 	}
 
 	public String getContent () {
@@ -170,24 +120,51 @@ public class WxMsg implements Serializable {
 		this.label = label;
 	}
 
-	@Override
-	public String toString () {
-		return "WxMsg{" +
-				"type=" + type +
-				", id='" + id + '\'' +
-				", to='" + to + '\'' +
-				", from='" + from + '\'' +
-				", time='" + time + '\'' +
-				", content='" + content + '\'' +
-				", mediaId='" + mediaId + '\'' +
-				", picUrl='" + picUrl + '\'' +
-				", format='" + format + '\'' +
-				", thumbMediaId='" + thumbMediaId + '\'' +
-				", url='" + url + '\'' +
-				", description='" + description + '\'' +
-				", locationX='" + locationX + '\'' +
-				", locationY='" + locationY + '\'' +
-				", label='" + label + '\'' +
-				'}';
+	public WxMsgEventType getEvent () {
+		return event;
+	}
+
+	public void setEvent ( WxMsgEventType event ) {
+		this.event = event;
+	}
+
+	public String getEventKey () {
+		return eventKey;
+	}
+
+	public void setEventKey ( String eventKey ) {
+		this.eventKey = eventKey;
+	}
+
+	public String getTicket () {
+		return ticket;
+	}
+
+	public void setTicket ( String ticket ) {
+		this.ticket = ticket;
+	}
+
+	public String getLatitude () {
+		return latitude;
+	}
+
+	public void setLatitude ( String latitude ) {
+		this.latitude = latitude;
+	}
+
+	public String getLongitude () {
+		return longitude;
+	}
+
+	public void setLongitude ( String longitude ) {
+		this.longitude = longitude;
+	}
+
+	public String getPrecision () {
+		return precision;
+	}
+
+	public void setPrecision ( String precision ) {
+		this.precision = precision;
 	}
 }

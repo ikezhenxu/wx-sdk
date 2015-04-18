@@ -2,6 +2,9 @@ package huilai.kezhenxu.message;
 
 import huilai.kezhenxu.WxFactory;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * Created by kezhenxu on 4/18/15.
  */
@@ -19,4 +22,12 @@ public class WxMsgSender {
 		this.wxFactory = wxFactory;
 	}
 
+	public void send ( HttpServletResponse response, WxMsgToSend msg ) {
+		try {
+			response.getWriter ().print ( msg.toXMLString ( true ) );
+		} catch ( IOException e ) {
+			e.printStackTrace ();
+			throw new RuntimeException ( "Error occurs when sending message:", e );
+		}
+	}
 }

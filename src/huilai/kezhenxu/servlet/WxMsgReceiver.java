@@ -1,7 +1,6 @@
 package huilai.kezhenxu.servlet;
 
-import huilai.kezhenxu.message.WxMsg;
-import huilai.kezhenxu.message.WxMsgParser;
+import huilai.kezhenxu.message.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,19 +15,37 @@ import java.io.IOException;
 @WebServlet ( "/msg/receive.api" )
 public class WxMsgReceiver extends HttpServlet {
 
+	protected HttpServletResponse response;
+
 	protected void doPost ( HttpServletRequest request, HttpServletResponse response )
 			throws ServletException, IOException {
+		this.response = response;
 
 		try {
 			WxMsgParser parser = new WxMsgParser ();
 			WxMsg msg = parser.parse ( request.getInputStream () );
-			System.out.println ( "--------------" );
 			System.out.println ( msg );
-			System.out.println ( "--------------" );
+			switch ( msg.getType () ) {
+				case EVENT:
+					handle ( msg );
+					break;
+			}
 		} catch ( Exception e ) {
 			e.printStackTrace ();
-		} finally {
+		}
+	}
 
+	private void handle ( WxMsg msg ) {
+		switch ( msg.getEvent () ) {
+			case SUBSCRIBE:
+				WxMsgSender sender = new WxMsgSender ();
+				WxMsgToSend msgToSend = new WxMsgToSend ();
+				msgToSend.setFrom ( msg.getTo () );
+				msgToSend.setTo ( msg.getFrom () );
+				msgToSend.setTime ( System.currentTimeMillis () + "" );
+				msgToSend.setSendType ( WxMsgSendType.TEXT );
+				sender.send ( response, msgToSend );
+				break;
 		}
 	}
 

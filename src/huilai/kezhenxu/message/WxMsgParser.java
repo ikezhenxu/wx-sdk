@@ -73,7 +73,7 @@ public class WxMsgParser {
 				msg.setTime ( value );
 			}
 			else if ( current.equals ( "MsgType" ) ) {
-				msg.setType ( WxMsg.WxMsgType.valueOf ( value.toUpperCase () ) );
+				msg.setType ( WxMsgType.valueOf ( value.toUpperCase () ) );
 			}
 			else if ( current.equals ( "Content" ) ) {
 				msg.setContent ( value );
@@ -104,6 +104,9 @@ public class WxMsgParser {
 			}
 			else if ( current.equals ( "Label" ) ) {
 				msg.setLabel ( value );
+			}
+			else if ( current.equals ( "Event" ) ) {
+				msg.setEvent ( WxMsgEventType.valueOf ( value ) );
 			}
 		}
 
