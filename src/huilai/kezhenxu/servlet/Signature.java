@@ -23,7 +23,7 @@ public class Signature extends HttpServlet {
 	                                                                                   IOException {
 		Map<String, String[]> params      = request.getParameterMap ();
 		String                contentType = request.getContentType ();
-
+		System.out.println ( contentType );
 		if ( params.containsKey ( "echostr" ) ) {
 			doSignature ( request, response );
 			return;
