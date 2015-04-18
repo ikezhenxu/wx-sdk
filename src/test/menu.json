@@ -1,13 +1,30 @@
 {
-  "sub_button": [
+  "button": [
     {
-      "sub_button": [],
-      "name": "百度一下",
-      "type": "view",
-      "url": "www.baidu.com"
-    }
-  ],
-  "name": "注册",
-  "type": "click",
-  "key": "reg"
+      "name": "最新靓号",
+      "type": "click",
+      "key": "newest"
+    },
+    {
+      "name": "卡套分类",
+      "sub_button": [
+        {
+          "name": "中国移动",
+          "type": "view",
+          "url": "http://www.10086.com"
+        },
+        {
+          "name": "中国联通",
+          "type": "view",
+          "url": "http://www.10010.com"
+        },
+        {
+          "name": "中国电信",
+          "type": "view",
+          "url": "http://www.189.cn"
+        }
+      ]
+    },
+    {"name": "更多..."}
+  ]
 }

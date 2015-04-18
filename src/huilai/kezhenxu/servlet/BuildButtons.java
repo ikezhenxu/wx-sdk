@@ -54,6 +54,8 @@ public class BuildButtons extends HttpServlet {
 				.setKey ( "feedback" )
 				.setType ( WxButtonType.CLICK );
 		wrapper.add ( newest, clazz, more );
+		more.addSubMenu ( about )
+		    .addSubMenu ( feedback );
 		WxButtonBuilder builder    = new WxButtonBuilder ();
 		WxResponse      wxResponse = builder.buildButtons ( wrapper );
 		System.out.println ( wxResponse );
