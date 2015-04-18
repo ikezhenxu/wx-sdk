@@ -35,15 +35,15 @@ public class TestCases {
 		     .addSubMenu ( cu )
 		     .addSubMenu ( ct );
 		WxButton more = new WxButton ();
-		//		WxButton about = new WxButton ()
-		//				.setName ( "关于..." )
-		//				.setType ( WxButtonType.CLICK )
-		//				.setKey ( "about" );
-		//		WxButton feedback = new WxButton ()
-		//				.setName ( "建议反馈" )
-		//				.setKey ( "feedback" )
-		//				.setType ( WxButtonType.CLICK );
-		//		more.addSubMenu ( about ).addSubMenu ( feedback );
+				WxButton about = new WxButton ()
+						.setName ( "关于..." )
+						.setType ( WxButtonType.CLICK )
+						.setKey ( "about" );
+				WxButton feedback = new WxButton ()
+						.setName ( "建议反馈" )
+						.setKey ( "feedback" )
+						.setType ( WxButtonType.CLICK );
+				more.addSubMenu ( about ).addSubMenu ( feedback );
 		wrapper.add ( newest, clazz, more );
 		System.out.println ( wrapper.toString () );
 	}
