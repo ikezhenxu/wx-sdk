@@ -56,7 +56,7 @@ public class WxMsgParser {
 		public void characters ( char[] ch, int start, int length ) throws SAXException {
 			super.characters ( ch, start, length );
 			String value = new String ( ch, start, length );
-			System.out.println (value);
+			System.out.println ( value );
 			if ( current == null ) {
 				return;
 			}
@@ -76,7 +76,7 @@ public class WxMsgParser {
 				msg.setType ( WxMsg.WxMsgType.valueOf ( value.toUpperCase () ) );
 			}
 			else if ( current.equals ( "Content" ) ) {
-
+				msg.setContent ( value );
 			}
 			else if ( current.equals ( "MediaId" ) ) {
 				msg.setMediaId ( value );
