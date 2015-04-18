@@ -31,15 +31,15 @@ public class BuildButtons extends HttpServlet {
 		WxButton cmcc = new WxButton ()
 				.setName ( "中国移动" )
 				.setType ( WxButtonType.VIEW )
-				.setUrl ( "www.10086.com" );
+				.setUrl ( "http://www.10086.com" );
 		WxButton cu = new WxButton ()
 				.setName ( "中国联通" )
 				.setType ( WxButtonType.VIEW )
-				.setUrl ( "www.10010.com" );
+				.setUrl ( "http://www.10010.com" );
 		WxButton ct = new WxButton ()
 				.setName ( "中国电信" )
 				.setType ( WxButtonType.VIEW )
-				.setUrl ( "www.189.cn" );
+				.setUrl ( "http://www.189.cn" );
 		clazz.addSubMenu ( cmcc )
 		     .addSubMenu ( cu )
 		     .addSubMenu ( ct );
