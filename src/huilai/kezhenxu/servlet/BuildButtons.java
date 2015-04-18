@@ -26,7 +26,8 @@ public class BuildButtons extends HttpServlet {
 				.setName ( "最新靓号" )
 				.setType ( WxButtonType.CLICK )
 				.setKey ( "newest" );
-		WxButton clazz = new WxButton ();
+		WxButton clazz = new WxButton ()
+				.setName ( "卡套分类" );
 		WxButton cmcc = new WxButton ()
 				.setName ( "中国移动" )
 				.setType ( WxButtonType.VIEW )
@@ -42,7 +43,8 @@ public class BuildButtons extends HttpServlet {
 		clazz.addSubMenu ( cmcc )
 		     .addSubMenu ( cu )
 		     .addSubMenu ( ct );
-		WxButton more = new WxButton ();
+		WxButton more = new WxButton ()
+				.setName ( "更多..." );
 		WxButton about = new WxButton ()
 				.setName ( "关于..." )
 				.setType ( WxButtonType.CLICK )
