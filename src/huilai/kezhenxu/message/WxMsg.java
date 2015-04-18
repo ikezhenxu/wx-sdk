@@ -167,4 +167,26 @@ public class WxMsg extends WxBaseMsg implements Serializable {
 	public void setPrecision ( String precision ) {
 		this.precision = precision;
 	}
+
+	@Override
+	public String toString () {
+		return "WxMsg{" +
+				"content='" + content + '\'' +
+				", mediaId='" + mediaId + '\'' +
+				", picUrl='" + picUrl + '\'' +
+				", format='" + format + '\'' +
+				", thumbMediaId='" + thumbMediaId + '\'' +
+				", url='" + url + '\'' +
+				", description='" + description + '\'' +
+				", locationX='" + locationX + '\'' +
+				", locationY='" + locationY + '\'' +
+				", label='" + label + '\'' +
+				", event=" + event +
+				", eventKey='" + eventKey + '\'' +
+				", ticket='" + ticket + '\'' +
+				", latitude='" + latitude + '\'' +
+				", longitude='" + longitude + '\'' +
+				", precision='" + precision + '\'' +
+				"} " + super.toString ();
+	}
 }

@@ -44,6 +44,7 @@ public class WxMsgReceiver extends HttpServlet {
 				msgToSend.setTo ( msg.getFrom () );
 				msgToSend.setTime ( System.currentTimeMillis () + "" );
 				msgToSend.setSendType ( WxMsgSendType.TEXT );
+				msgToSend.setContent ( "HelloWorld" );
 				sender.send ( response, msgToSend );
 				break;
 		}

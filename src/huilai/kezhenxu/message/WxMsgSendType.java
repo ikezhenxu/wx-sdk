@@ -14,4 +14,8 @@ public enum WxMsgSendType {
 	WxMsgSendType ( String typeName ) {
 		this.typeName = typeName;
 	}
+
+	public String getTypeName () {
+		return typeName;
+	}
 }

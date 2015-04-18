@@ -135,7 +135,7 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 		       .append ( "</ThumbMediaId>" )
 		       .append ( "<MsgType>" )
 		       .append ( "<![CDATA[" )
-		       .append ( sendType == null ? "" : sendType )
+		       .append ( sendType == null ? "" : sendType.getTypeName () )
 		       .append ( "]]>" )
 		       .append ( "</MsgType>" );
 		if ( withXMLRootNode ) {
