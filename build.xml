@@ -41,6 +41,7 @@
 
 	<target name="compile" description="编译">
 		<mkdir dir="${dest.dir}" />
+		<antcall target="copy-conf" />
 		<javac srcdir="${src.dir}" destdir="${dest.dir}"
 		       failonerror="true" debug="true"
 		       includeantruntime="false" encoding="UTF-8">
@@ -48,7 +49,8 @@
 		</javac>
 	</target>
 
-	<target name="deploy" description="生成指向配置文件, 用于 tomcat 的引用部署">
+	<target name="deploy" description="生成指向配置文件, 用于 tomcat 的引用部署"
+	        depends="compile">
 		<echo file="${ant.project.name}.xml">&lt;Context docBase="${web.absolute.dir}"&gt;&lt;/Context&gt;</echo>
 	</target>
 </project>
