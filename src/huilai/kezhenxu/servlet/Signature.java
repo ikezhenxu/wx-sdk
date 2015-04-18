@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 import static huilai.kezhenxu.util.HttpUtil.needString;
 
@@ -20,6 +21,14 @@ public class Signature extends HttpServlet {
 	protected void doPost ( HttpServletRequest request, HttpServletResponse response ) throws
 	                                                                                   ServletException,
 	                                                                                   IOException {
+		Map<String, String[]> params = request.getParameterMap ();
+		if ( params.containsKey ( "echostr" ) ) {
+			doSignature ( request, response );
+			return;
+		}
+	}
+
+	private void doSignature ( HttpServletRequest request, HttpServletResponse response ) {
 
 		String signature  = needString ( request, "signature" );
 		String timestamp  = needString ( request, "timestamp" );
