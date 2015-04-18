@@ -30,7 +30,7 @@ public class SignatureChecker {
 
 		try {
 			MessageDigest digest = MessageDigest.getInstance ( "SHA-1" );
-			byte[] digestedBytes = digest.digest ( string.getBytes ( "UTF-8" ) );
+			byte[] digestedBytes = digest.digest ( string.getBytes () );
 			String digestedString = bytesToHexString ( digestedBytes );
 			System.out.println ( digestedString );
 			return signature.equals ( digestedString );
