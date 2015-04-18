@@ -20,7 +20,7 @@ public class WxFactory {
 		properties = new Properties ();
 		try {
 			properties.load (
-					getClass ().getResourceAsStream ( "wx.properties" )
+					getClass ().getResourceAsStream ( "/wx.properties" )
 			);
 		} catch ( IOException e ) {
 			e.printStackTrace ();
