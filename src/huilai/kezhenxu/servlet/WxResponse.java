@@ -21,9 +21,20 @@ public class WxResponse {
 		}
 	}
 
-	public int getErrCode () { return object.getInteger ( ERR_CODE ); }
+	public int getErrCode () {
+		return object.getInteger ( ERR_CODE );
+	}
 
-	public String getErrMsg () { return object.getString ( ERR_MSG ); }
+	public String getErrMsg () {
+		return object.getString ( ERR_MSG );
+	}
 
-	public String getString ( String key ) { return object.getString ( key ); }
+	public String getString ( String key ) {
+		return object.getString ( key );
+	}
+
+	@Override
+	public String toString () {
+		return "{\"errcode\":" + getErrCode () + "\"errmsg\":\"" + getErrMsg () + "\"}";
+	}
 }
