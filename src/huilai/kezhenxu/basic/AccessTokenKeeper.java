@@ -33,6 +33,8 @@ public class AccessTokenKeeper implements Serializable {
 
 	public String getAccessToken () {
 		Long accessTokenLife   = Long.parseLong ( wxFactory.getProperty ( WxFactory.ACCESS_TOKEN_LIFE ) );
+		System.out.println ("-----------------");
+		System.out.println (accessTokenLife);
 		Long currentTimeMillis = System.currentTimeMillis ();
 		if ( currentTimeMillis - birthTime >= accessTokenLife ) {
 			return getAccessToken ( true );
