@@ -1,7 +1,7 @@
 package huilai.kezhenxu.menu;
 
 import huilai.kezhenxu.WxFactory;
-import huilai.kezhenxu.basic.AccessTokenKeeper;
+import huilai.kezhenxu.basic.WxAccessTokenKeeper;
 import huilai.kezhenxu.servlet.WxResponse;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.entity.StringEntity;
@@ -26,7 +26,7 @@ public class WxButtonBuilder {
 
 	public WxResponse buildButtons ( WxButtonWrapper buttonWrapper ) {
 		try {
-			String accessToken = new AccessTokenKeeper ().getAccessToken ();
+			String accessToken = new WxAccessTokenKeeper ().getAccessToken ();
 			System.out.println ( accessToken );
 			String url = String.format ( API_URL_FORMAT, accessToken );
 			String returnContent = Request.Post ( url )

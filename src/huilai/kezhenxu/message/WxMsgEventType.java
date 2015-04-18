@@ -5,8 +5,8 @@ package huilai.kezhenxu.message;
  */
 public enum WxMsgEventType {
 
-	SUBSCRIBE ( "subscribe" ), SCAN ( "SCAN" ),
-	LOCATION ( "LOCATION" ), CLICK ( "CLICK" ),
+	SUBSCRIBE ( "subscribe" ), UNSUBSCRIBE ( "unsubscribe" ),
+	SCAN ( "SCAN" ), LOCATION ( "LOCATION" ), CLICK ( "CLICK" ),
 	VIEW ( "VIEW" );
 
 	private String typeName;

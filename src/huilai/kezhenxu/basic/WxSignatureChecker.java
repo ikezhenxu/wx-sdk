@@ -8,15 +8,15 @@ import java.util.Arrays;
 /**
  * Created by kezhenxu on 4/17/15.
  */
-public class SignatureChecker {
+public class WxSignatureChecker {
 
 	protected WxFactory wxFactory;
 
-	public SignatureChecker () {
+	public WxSignatureChecker () {
 		this ( WxFactory.getDefault () );
 	}
 
-	public SignatureChecker ( WxFactory wxFactory ) {
+	public WxSignatureChecker ( WxFactory wxFactory ) {
 		this.wxFactory = wxFactory;
 	}
 

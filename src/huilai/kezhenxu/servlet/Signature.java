@@ -1,6 +1,6 @@
 package huilai.kezhenxu.servlet;
 
-import huilai.kezhenxu.basic.SignatureChecker;
+import huilai.kezhenxu.basic.WxSignatureChecker;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,7 +43,7 @@ public class Signature extends HttpServlet {
 		String nonce      = needString ( request, "nonce" );
 		String echostring = needString ( request, "echostr" );
 		try {
-			if ( new SignatureChecker ().check ( signature, timestamp, nonce ) ) {
+			if ( new WxSignatureChecker ().check ( signature, timestamp, nonce ) ) {
 				response.getWriter ().write ( echostring );
 			}
 		} catch ( Exception e ) {

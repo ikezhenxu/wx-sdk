@@ -10,7 +10,7 @@ import java.io.Serializable;
 /**
  * Created by kezhenxu on 4/17/15.
  */
-public class AccessTokenKeeper implements Serializable {
+public class WxAccessTokenKeeper implements Serializable {
 
 	public static final String ACCESS_TOKEN = "access_token";
 	public static final String EXPIRES_IN   = "expires_in";
@@ -23,11 +23,11 @@ public class AccessTokenKeeper implements Serializable {
 	private static String accessToken;
 	private static long   birthTime;
 
-	public AccessTokenKeeper () {
+	public WxAccessTokenKeeper () {
 		this ( WxFactory.getDefault () );
 	}
 
-	public AccessTokenKeeper ( WxFactory wxFactory ) {
+	public WxAccessTokenKeeper ( WxFactory wxFactory ) {
 		this.wxFactory = wxFactory;
 	}
 

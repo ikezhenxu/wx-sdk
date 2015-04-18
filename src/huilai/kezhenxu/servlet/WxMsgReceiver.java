@@ -29,6 +29,12 @@ public class WxMsgReceiver extends HttpServlet {
 				case EVENT:
 					handle ( msg );
 					break;
+				case TEXT:
+					String content = msg.getContent ();
+					System.out.println ("________________");
+					System.out.println ( content );
+					System.out.println ("________________");
+					break;
 			}
 		} catch ( Exception e ) {
 			e.printStackTrace ();
@@ -44,7 +50,7 @@ public class WxMsgReceiver extends HttpServlet {
 				msgToSend.setTo ( msg.getFrom () );
 				msgToSend.setTime ( System.currentTimeMillis () + "" );
 				msgToSend.setSendType ( WxMsgType.TEXT );
-				msgToSend.setContent ( "HelloWorld" );
+				msgToSend.setContent ( "感谢关注惠来网订阅号，我们将竭诚为您服务！" );
 				sender.send ( response, msgToSend );
 				break;
 		}
