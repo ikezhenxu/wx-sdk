@@ -106,7 +106,7 @@ public class WxMsgParser {
 				msg.setLabel ( value );
 			}
 			else if ( current.equals ( "Event" ) ) {
-				msg.setEvent ( WxMsgEventType.valueOf ( value ) );
+				msg.setEvent ( WxMsgEventType.valueOf ( value.toUpperCase () ) );
 			}
 		}
 
