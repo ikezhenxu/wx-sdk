@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Created by kezhenxu on 4/18/15.
  */
-@WebFilter ( "/**/*.api" )
+@WebFilter ( "/*.api" )
 public class UrlFilter implements Filter {
 
 	public void destroy () {
