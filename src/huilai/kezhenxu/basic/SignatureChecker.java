@@ -35,7 +35,7 @@ public class SignatureChecker {
 			byte[] digestedBytes = digest.digest ( string.getBytes () );
 			String digestedString = bytesToHexString ( digestedBytes );
 			System.out.println ( digestedString );
-			return signature.equals ( digestedString );
+			return signature.equalsIgnoreCase ( digestedString );
 		} catch ( Exception e ) {
 			e.printStackTrace ();
 			throw new RuntimeException ( e );
