@@ -41,10 +41,13 @@ public class SignatureChecker {
 	}
 
 	private String bytesToHexString ( byte[] bytes ) {
+		char[] table = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+				'A', 'B', 'C', 'D', 'E', 'F' };
+
 		StringBuilder builder = new StringBuilder ();
 		for ( byte aByte : bytes ) {
-			builder.append ( ( char ) ( aByte >>> 4 ) & 0x0F );
-			builder.append ( ( char ) ( aByte ) & 0x0F );
+			builder.append ( table[ ( aByte >>> 4 ) & 0x0F ] );
+			builder.append ( table[ ( aByte ) & 0x0F ] );
 		}
 		return builder.toString ();
 	}
