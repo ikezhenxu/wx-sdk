@@ -14,21 +14,17 @@ import static huilai.kezhenxu.util.HttpUtil.needString;
 /**
  * Created by kezhenxu on 4/17/15.
  */
-@WebServlet ( "/base/signature" )
+@WebServlet ( "/base/signature.api" )
 public class Signature extends HttpServlet {
 
 	protected void doPost ( HttpServletRequest request, HttpServletResponse response ) throws
-			ServletException,
-			IOException {
+	                                                                                   ServletException,
+	                                                                                   IOException {
 
 		String signature  = needString ( request, "signature" );
 		String timestamp  = needString ( request, "timestamp" );
 		String nonce      = needString ( request, "nonce" );
 		String echostring = needString ( request, "echostr" );
-		System.out.println (signature);
-		System.out.println (timestamp);
-		System.out.println (nonce);
-		System.out.println (echostring);
 		try {
 			if ( new SignatureChecker ().check ( signature, timestamp, nonce ) ) {
 				response.getWriter ().write ( echostring );
@@ -39,8 +35,8 @@ public class Signature extends HttpServlet {
 	}
 
 	protected void doGet ( HttpServletRequest request, HttpServletResponse response ) throws
-			ServletException,
-			IOException {
+	                                                                                  ServletException,
+	                                                                                  IOException {
 		doPost ( request, response );
 	}
 }

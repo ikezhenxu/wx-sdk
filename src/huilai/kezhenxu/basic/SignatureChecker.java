@@ -34,7 +34,6 @@ public class SignatureChecker {
 			MessageDigest digest = MessageDigest.getInstance ( "SHA-1" );
 			byte[] digestedBytes = digest.digest ( string.getBytes () );
 			String digestedString = bytesToHexString ( digestedBytes );
-			System.out.println ( digestedString );
 			return digestedString.equals ( signature.toUpperCase () );
 		} catch ( Exception e ) {
 			e.printStackTrace ();
