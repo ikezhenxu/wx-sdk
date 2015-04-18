@@ -1,0 +1,13 @@
+{
+  "sub_button": [
+    {
+      "sub_button": [],
+      "name": "百度一下",
+      "type": "view",
+      "url": "www.baidu.com"
+    }
+  ],
+  "name": "注册",
+  "type": "click",
+  "key": "reg"
+}

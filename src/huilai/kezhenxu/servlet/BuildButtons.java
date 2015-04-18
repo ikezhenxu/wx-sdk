@@ -1,17 +1,26 @@
-package test;
+package huilai.kezhenxu.servlet;
 
 import huilai.kezhenxu.menu.WxButton;
+import huilai.kezhenxu.menu.WxButtonBuilder;
 import huilai.kezhenxu.menu.WxButtonType;
 import huilai.kezhenxu.menu.WxButtonWrapper;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by kezhenxu on 4/17/15.
+ * Created by kezhenxu on 4/18/15.
  */
-public class TestCases {
+@WebServlet ( "/bt/build.api" )
+public class BuildButtons extends HttpServlet {
 
-	public static void main ( String[] args ) throws IOException {
+	protected void doGet ( HttpServletRequest request, HttpServletResponse response )
+			throws ServletException, IOException {
+
 		WxButtonWrapper wrapper = new WxButtonWrapper ();
 		WxButton newest = new WxButton ()
 				.setName ( "最新靓号" )
@@ -30,22 +39,20 @@ public class TestCases {
 				.setName ( "中国电信" )
 				.setType ( WxButtonType.VIEW )
 				.setUrl ( "www.189.cn" );
-		clazz.setName ( "卡套分类" )
-		     .addSubMenu ( cmcc )
+		clazz.addSubMenu ( cmcc )
 		     .addSubMenu ( cu )
 		     .addSubMenu ( ct );
 		WxButton more = new WxButton ();
-		//		WxButton about = new WxButton ()
-		//				.setName ( "关于..." )
-		//				.setType ( WxButtonType.CLICK )
-		//				.setKey ( "about" );
-		//		WxButton feedback = new WxButton ()
-		//				.setName ( "建议反馈" )
-		//				.setKey ( "feedback" )
-		//				.setType ( WxButtonType.CLICK );
-		//		more.addSubMenu ( about ).addSubMenu ( feedback );
+		WxButton about = new WxButton ()
+				.setName ( "关于..." )
+				.setType ( WxButtonType.CLICK )
+				.setKey ( "about" );
+		WxButton feedback = new WxButton ()
+				.setName ( "建议反馈" )
+				.setKey ( "feedback" )
+				.setType ( WxButtonType.CLICK );
 		wrapper.add ( newest, clazz, more );
-		System.out.println ( wrapper.toString () );
+		WxButtonBuilder builder = new WxButtonBuilder ();
+		builder.buildButtons (wrapper);
 	}
-
 }

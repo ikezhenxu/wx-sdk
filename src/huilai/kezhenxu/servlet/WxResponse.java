@@ -17,6 +17,7 @@ public class WxResponse {
 			object = JSONObject.parseObject ( jsonString );
 		} catch ( Exception e ) {
 			e.printStackTrace ();
+			throw new RuntimeException ( e );
 		}
 	}
 

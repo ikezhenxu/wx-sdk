@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by kezhenxu on 4/18/15.
  */
-public class WxMsg extends WxBaseMsg implements Serializable {
+public class WxMsgReceived extends WxBaseMsg implements Serializable {
 
 	// 文本消息
 	protected String content;
@@ -37,7 +37,7 @@ public class WxMsg extends WxBaseMsg implements Serializable {
 	protected String         longitude;
 	protected String         precision;
 
-	public WxMsg () {
+	public WxMsgReceived () {
 	}
 
 	public String getContent () {
@@ -170,7 +170,7 @@ public class WxMsg extends WxBaseMsg implements Serializable {
 
 	@Override
 	public String toString () {
-		return "WxMsg{" +
+		return "WxMsgReceived{" +
 				"content='" + content + '\'' +
 				", mediaId='" + mediaId + '\'' +
 				", picUrl='" + picUrl + '\'' +

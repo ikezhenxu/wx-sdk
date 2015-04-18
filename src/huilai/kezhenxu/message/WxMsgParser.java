@@ -14,8 +14,8 @@ import java.io.InputStream;
  */
 public class WxMsgParser {
 
-	protected WxFactory wxFactory;
-	protected WxMsg     msg;
+	protected WxFactory     wxFactory;
+	protected WxMsgReceived msg;
 
 	public WxMsgParser () {
 		this ( WxFactory.getDefault () );
@@ -25,8 +25,8 @@ public class WxMsgParser {
 		this.wxFactory = wxFactory;
 	}
 
-	public WxMsg parse ( InputStream inputStream ) {
-		msg = new WxMsg ();
+	public WxMsgReceived parse ( InputStream inputStream ) {
+		msg = new WxMsgReceived ();
 		try {
 			SAXParserFactory factory = SAXParserFactory.newInstance ();
 			SAXParser saxParser = factory.newSAXParser ();

@@ -23,7 +23,7 @@ public class WxMsgReceiver extends HttpServlet {
 
 		try {
 			WxMsgParser parser = new WxMsgParser ();
-			WxMsg msg = parser.parse ( request.getInputStream () );
+			WxMsgReceived msg = parser.parse ( request.getInputStream () );
 			System.out.println ( msg );
 			switch ( msg.getType () ) {
 				case EVENT:
@@ -35,7 +35,7 @@ public class WxMsgReceiver extends HttpServlet {
 		}
 	}
 
-	private void handle ( WxMsg msg ) {
+	private void handle ( WxMsgReceived msg ) {
 		switch ( msg.getEvent () ) {
 			case SUBSCRIBE:
 				WxMsgSender sender = new WxMsgSender ();
