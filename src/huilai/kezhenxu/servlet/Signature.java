@@ -22,6 +22,7 @@ public class Signature extends HttpServlet {
 	                                                                                   ServletException,
 	                                                                                   IOException {
 		Map<String, String[]> params = request.getParameterMap ();
+		System.out.println (request.getContentType ());
 		if ( params.containsKey ( "echostr" ) ) {
 			doSignature ( request, response );
 			return;
