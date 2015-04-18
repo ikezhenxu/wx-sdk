@@ -30,7 +30,7 @@
 	</target>
 
 	<target name="copy-conf" description="复制配置文件">
-		<copy todir="${web.dir}">
+		<copy todir="${dest.dir}">
 			<fileset dir="${src.dir}">
 				<include name="**/*.xml" />
 				<include name="**/*.properties" />
