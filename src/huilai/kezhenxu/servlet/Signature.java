@@ -21,10 +21,17 @@ public class Signature extends HttpServlet {
 	protected void doPost ( HttpServletRequest request, HttpServletResponse response ) throws
 	                                                                                   ServletException,
 	                                                                                   IOException {
-		Map<String, String[]> params = request.getParameterMap ();
-		System.out.println (request.getContentType ());
+		Map<String, String[]> params      = request.getParameterMap ();
+		String                contentType = request.getContentType ();
+
 		if ( params.containsKey ( "echostr" ) ) {
 			doSignature ( request, response );
+			return;
+		}
+
+		if ( contentType != null && contentType.equals ( "text/xml" ) ) {
+			request.getRequestDispatcher ( "/msg/receive.api" )
+			       .forward ( request, response );
 			return;
 		}
 	}
