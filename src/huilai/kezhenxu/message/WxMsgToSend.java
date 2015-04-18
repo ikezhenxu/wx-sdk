@@ -97,43 +97,57 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 		if ( withXMLRootNode ) {
 			builder.append ( "<xml>" );
 		}
-		builder.append ( super.toXMLString ( false ) )
-		       .append ( "<Content>" )
-		       .append ( "<![CDATA[" )
-		       .append ( content == null ? "" : content )
-		       .append ( "]]>" )
-		       .append ( "</Content>" )
-		       .append ( "<MediaId>" )
-		       .append ( "<![CDATA[" )
-		       .append ( mediaId == null ? "" : mediaId )
-		       .append ( "]]>" )
-		       .append ( "</MediaId>" )
-		       .append ( "<Title>" )
-		       .append ( "<![CDATA[" )
-		       .append ( title == null ? "" : title )
-		       .append ( "]]>" )
-		       .append ( "</Title>" )
-		       .append ( "<Description>" )
-		       .append ( "<![CDATA[" )
-		       .append ( description == null ? "" : description )
-		       .append ( "]]>" )
-		       .append ( "</Description>" )
-		       .append ( "<MusicUrl>" )
-		       .append ( "<![CDATA[" )
-		       .append ( musicUrl == null ? "" : musicUrl )
-		       .append ( "]]>" )
-		       .append ( "</MusicUrl>" )
-		       .append ( "<HQMusicUrl>" )
-		       .append ( "<![CDATA[" )
-		       .append ( hqMusicUrl == null ? "" : hqMusicUrl )
-		       .append ( "]]>" )
-		       .append ( "</HQMusicUrl>" )
-		       .append ( "<ThumbMediaId>" )
-		       .append ( "<![CDATA[" )
-		       .append ( thumbMediaId == null ? "" : thumbMediaId )
-		       .append ( "]]>" )
-		       .append ( "</ThumbMediaId>" )
-		       .append ( "<MsgType>" )
+		if ( content != null ) {
+			builder.append ( super.toXMLString ( false ) )
+			       .append ( "<Content>" )
+			       .append ( "<![CDATA[" )
+			       .append ( content )
+			       .append ( "]]>" )
+			       .append ( "</Content>" );
+		}
+		if ( mediaId != null ) {
+			builder.append ( "<MediaId>" )
+			       .append ( "<![CDATA[" )
+			       .append ( mediaId )
+			       .append ( "]]>" )
+			       .append ( "</MediaId>" );
+		}
+		if ( title != null ) {
+			builder.append ( "<Title>" )
+			       .append ( "<![CDATA[" )
+			       .append ( title )
+			       .append ( "]]>" )
+			       .append ( "</Title>" );
+		}
+		if ( description != null ) {
+			builder.append ( "<Description>" )
+			       .append ( "<![CDATA[" )
+			       .append ( description )
+			       .append ( "]]>" )
+			       .append ( "</Description>" );
+		}
+		if ( musicUrl != null ) {
+			builder.append ( "<MusicUrl>" )
+			       .append ( "<![CDATA[" )
+			       .append ( musicUrl )
+			       .append ( "]]>" )
+			       .append ( "</MusicUrl>" );
+		}
+		if ( hqMusicUrl != null ) {
+			builder.append ( "<HQMusicUrl>" )
+			       .append ( "<![CDATA[" )
+			       .append ( hqMusicUrl )
+			       .append ( "]]>" )
+			       .append ( "</HQMusicUrl>" );
+		}
+		if ( thumbMediaId != null ) {
+			builder.append ( "<ThumbMediaId>" )
+			       .append ( "<![CDATA[" )
+			       .append ( thumbMediaId )
+			       .append ( "]]>" )
+			       .append ( "</ThumbMediaId>" );
+		}
+		builder.append ( "<MsgType>" )
 		       .append ( "<![CDATA[" )
 		       .append ( sendType == null ? "" : sendType.getTypeName () )
 		       .append ( "]]>" )
