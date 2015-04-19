@@ -27,13 +27,10 @@ public class WxMsgReceiver extends HttpServlet {
 			System.out.println ( msg );
 			switch ( msg.getType () ) {
 				case EVENT:
-					handle ( msg );
+					handleEvent ( msg );
 					break;
 				case TEXT:
-					String content = msg.getContent ();
-					System.out.println ("________________");
-					System.out.println ( content );
-					System.out.println ("________________");
+					handleText ( msg );
 					break;
 			}
 		} catch ( Exception e ) {
@@ -41,7 +38,22 @@ public class WxMsgReceiver extends HttpServlet {
 		}
 	}
 
-	private void handle ( WxMsgReceived msg ) {
+	private void handleText ( WxMsgReceived msg ) {
+		String      content = msg.getContent ();
+		String      regx    = "订购[0-9]{8}";
+		WxMsgSender sender  = new WxMsgSender ();
+		WxMsgToSend send    = new WxMsgToSend ();
+		send.setType ( WxMsgType.TEXT );
+		if ( content.matches ( regx ) ) {
+			send.setContent ( "您好，您的订购请求我们已经收到，我们会尽快为您配送货物，请注意查收！" );
+		}
+		else {
+			send.setContent ( "指令错误！" );
+		}
+		sender.send ( response, send );
+	}
+
+	private void handleEvent ( WxMsgReceived msg ) {
 		switch ( msg.getEvent () ) {
 			case SUBSCRIBE:
 				WxMsgSender sender = new WxMsgSender ();
