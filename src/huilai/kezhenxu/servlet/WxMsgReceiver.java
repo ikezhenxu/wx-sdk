@@ -44,6 +44,9 @@ public class WxMsgReceiver extends HttpServlet {
 		WxMsgSender sender  = new WxMsgSender ();
 		WxMsgToSend send    = new WxMsgToSend ();
 		send.setType ( WxMsgType.TEXT );
+		send.setTime ( System.currentTimeMillis () + "" );
+		send.setFrom ( msg.getTo () );
+		send.setTo ( msg.getFrom () );
 		if ( content.matches ( regx ) ) {
 			send.setContent ( "您好，您的订购请求我们已经收到，我们会尽快为您配送货物，请注意查收！" );
 		}
