@@ -39,14 +39,14 @@ public class WxMsgReceiver extends HttpServlet {
 	}
 
 	private void handleText ( WxMsgReceived msg ) {
-		String      content = msg.getContent ();
-		String      regx    = "订购[0-9]{8}";
 		WxMsgSender sender  = new WxMsgSender ();
 		WxMsgToSend send    = new WxMsgToSend ();
-		send.setType ( WxMsgType.TEXT );
-		send.setTime ( System.currentTimeMillis () + "" );
+		String      content = msg.getContent ();
+		String      regx    = "订购[0-9]{8}";
 		send.setFrom ( msg.getTo () );
 		send.setTo ( msg.getFrom () );
+		send.setTime ( System.currentTimeMillis () + "" );
+		send.setSendType ( WxMsgType.TEXT );
 		if ( content.matches ( regx ) ) {
 			send.setContent ( "您好，您的订购请求我们已经收到，我们会尽快为您配送货物，请注意查收！" );
 		}
