@@ -1,58 +1,28 @@
 package test;
 
-import huilai.kezhenxu.menu.WxButton;
-import huilai.kezhenxu.menu.WxButtonBuilder;
-import huilai.kezhenxu.menu.WxButtonType;
-import huilai.kezhenxu.menu.WxButtonWrapper;
-import huilai.kezhenxu.servlet.WxResponse;
+import huilai.kezhenxu.material.WxNews;
+import huilai.kezhenxu.material.WxNewsUploader;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by kezhenxu on 4/17/15.
  */
 public class TestCases {
 
-	public static void main ( String[] args ) throws IOException {
+	static String accessToken = "IkKrbQNmYmckEpA0B8GjZ4HVU3GWrFFL4BMcuqF0CNbIdLPC_vvCy6SASmiPdJ0CpTCp8Bn4WxWUaFT3Yz_k2M5DdqY-ZXZXrTBsWatNshM";
 
-		WxButtonWrapper wrapper = new WxButtonWrapper ();
-		WxButton newest = new WxButton ()
-				.setName ( "最新靓号" )
-				.setType ( WxButtonType.CLICK )
-				.setKey ( "newest" );
-		WxButton clazz = new WxButton ()
-				.setName ( "卡套分类" );
-		WxButton cmcc = new WxButton ()
-				.setName ( "中国移动" )
-				.setType ( WxButtonType.VIEW )
-				.setUrl ( "http://www.10086.com" );
-		WxButton cu = new WxButton ()
-				.setName ( "中国联通" )
-				.setType ( WxButtonType.VIEW )
-				.setUrl ( "http://www.10010.com" );
-		WxButton ct = new WxButton ()
-				.setName ( "中国电信" )
-				.setType ( WxButtonType.VIEW )
-				.setUrl ( "http://www.189.cn" );
-		clazz.addSubMenu ( cmcc )
-		     .addSubMenu ( cu )
-		     .addSubMenu ( ct );
-		WxButton more = new WxButton ()
-				.setName ( "更多..." );
-		WxButton about = new WxButton ()
-				.setName ( "关于..." )
-				.setType ( WxButtonType.CLICK )
-				.setKey ( "about" );
-		WxButton feedback = new WxButton ()
-				.setName ( "建议反馈" )
-				.setKey ( "feedback" )
-				.setType ( WxButtonType.CLICK );
-		more.addSubMenu ( about )
-		    .addSubMenu ( feedback );
-		wrapper.add ( newest, clazz, more );
-		WxButtonBuilder builder    = new WxButtonBuilder ();
-		WxResponse      wxResponse = builder.buildButtons ( wrapper );
-		System.out.println ( wrapper.toString () );
+	public static void main ( String[] args ) throws IOException, NoSuchAlgorithmException {
+		WxNews aNewsToSend = new WxNews ()
+				.setTitle ( "测试上传素材" )
+				.setThumb_media_id ( "o-bA-oihGFg78tKEUlUz8LH0yALsrK6RyumQpJFuSGo" )
+				.setAuthor ( "kezhenxu" )
+				.setDigest ( "这是一个测试图文消息，单图文才有" )
+				.setShow_cover_pic ( "1" )
+				.setContent ( "图文消息的具体内容，支持HTML标签，必须少于2万字符，小于1M，且此处会去除JS" )
+				.setContent_source_url ( "http://www.baidu.com" );
+
+		System.out.println ( new WxNewsUploader ().upload ( accessToken, aNewsToSend ) );
 	}
-
 }

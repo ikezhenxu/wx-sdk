@@ -64,8 +64,8 @@ public class WxMsgReceiver extends HttpServlet {
 				msgToSend.setFrom ( msg.getTo () );
 				msgToSend.setTo ( msg.getFrom () );
 				msgToSend.setTime ( System.currentTimeMillis () + "" );
-				msgToSend.setSendType ( WxMsgType.TEXT );
-				msgToSend.setContent ( "感谢关注惠来网订阅号，我们将竭诚为您服务！" );
+				msgToSend.setSendType ( WxMsgType.NEWS );
+				msgToSend.setMediaId ( "o-bA-oihGFg78tKEUlUz8Krdu2WNX-rhCdX3zMATEDk" );
 				sender.send ( response, msgToSend );
 				break;
 		}
