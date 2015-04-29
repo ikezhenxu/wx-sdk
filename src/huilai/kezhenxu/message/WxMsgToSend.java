@@ -92,14 +92,14 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 		this.sendType = sendType;
 	}
 
-	public String toXMLString ( boolean withXMLRootNode ) {
+	public String toXMLString ( final boolean withXMLRootNode ) {
 		StringBuilder builder = new StringBuilder ();
 		if ( withXMLRootNode ) {
 			builder.append ( "<xml>" );
 		}
+		builder.append ( super.toXMLString ( false ) );
 		if ( content != null ) {
-			builder.append ( super.toXMLString ( false ) )
-			       .append ( "<Content>" )
+			builder.append ( "<Content>" )
 			       .append ( "<![CDATA[" )
 			       .append ( content )
 			       .append ( "]]>" )
