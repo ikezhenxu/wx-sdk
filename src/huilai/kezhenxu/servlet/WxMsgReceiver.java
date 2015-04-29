@@ -1,5 +1,9 @@
 package huilai.kezhenxu.servlet;
 
+import huilai.kezhenxu.basic.WxAccessTokenKeeper;
+import huilai.kezhenxu.material.WxArticle;
+import huilai.kezhenxu.material.WxArticleWrapper;
+import huilai.kezhenxu.material.WxNewsGet;
 import huilai.kezhenxu.message.*;
 
 import javax.servlet.ServletException;
@@ -16,6 +20,13 @@ import java.io.IOException;
 public class WxMsgReceiver extends HttpServlet {
 
 	protected HttpServletResponse response;
+	protected WxAccessTokenKeeper tokenKeeper;
+
+	@Override
+	public void init () throws ServletException {
+		super.init ();
+		tokenKeeper = WxAccessTokenKeeper.getDefaultInstance ();
+	}
 
 	protected void doPost ( HttpServletRequest request, HttpServletResponse response )
 			throws ServletException, IOException {
@@ -59,13 +70,19 @@ public class WxMsgReceiver extends HttpServlet {
 	private void handleEvent ( WxMsgReceived msg ) {
 		switch ( msg.getEvent () ) {
 			case SUBSCRIBE:
+				WxArticleWrapper theWrapper = new WxNewsGet ()
+						.getByMediaId ( tokenKeeper.getAccessToken (),
+						                "o-bA-oihGFg78tKEUlUz8Krdu2WNX-rhCdX3zMATEDk" );
+				WxArticle theArticle = theWrapper.get ( 0 );
 				WxMsgSender sender = new WxMsgSender ();
 				WxMsgToSend msgToSend = new WxMsgToSend ();
 				msgToSend.setFrom ( msg.getTo () );
 				msgToSend.setTo ( msg.getFrom () );
 				msgToSend.setTime ( System.currentTimeMillis () + "" );
 				msgToSend.setSendType ( WxMsgType.NEWS );
-				msgToSend.setMediaId ( "o-bA-oihGFg78tKEUlUz8Krdu2WNX-rhCdX3zMATEDk" );
+				msgToSend.setTitle ( theArticle.getTitle () );
+				msgToSend.setUrl ( theArticle.getUrl ());
+				msgToSend.setDescription ( theArticle.getDigest () );
 				sender.send ( response, msgToSend );
 				break;
 		}

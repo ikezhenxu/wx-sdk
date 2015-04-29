@@ -1,6 +1,5 @@
 package huilai.kezhenxu.material;
 
-import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import huilai.kezhenxu.WxFactory;
 import huilai.kezhenxu.basic.WxAccessTokenKeeper;
@@ -26,22 +25,15 @@ public class WxNewsUploader {
 		wxFactory = aWxFactory;
 	}
 
-	public String upload ( WxAccessTokenKeeper aTokenKeeper, WxNews... aNewsToSend ) {
+	public String upload ( WxAccessTokenKeeper aTokenKeeper, WxArticleWrapper aNewsToSend ) {
 		return upload ( aTokenKeeper.getAccessToken (), aNewsToSend );
 	}
 
-	public String upload ( String aAccessToken, WxNews... aNewsToSend ) {
+	public String upload ( String aAccessToken, WxArticleWrapper aNewsToSend ) {
 		try {
-			JSONObject jsonObject = new JSONObject ();
-			JSONArray theNews = new JSONArray ();
-			for ( WxNews theWxNews : aNewsToSend ) {
-				theNews.add ( theWxNews.toJSON () );
-			}
-			jsonObject.put ( "articles", theNews );
-
 			String url = String.format ( API_URL_FORMAT, aAccessToken);
 			String responseJsonString = Request.Post ( url )
-			                                   .bodyString ( jsonObject.toJSONString (), ContentType.APPLICATION_JSON )
+			                                   .bodyString ( aNewsToSend.toJsonString (), ContentType.APPLICATION_JSON )
 			                                   .execute ()
 			                                   .returnContent ()
 			                                   .asString ();

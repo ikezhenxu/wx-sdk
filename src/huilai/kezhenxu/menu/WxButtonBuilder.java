@@ -26,7 +26,9 @@ public class WxButtonBuilder {
 
 	public WxResponse buildButtons ( WxButtonWrapper buttonWrapper ) {
 		try {
-			String accessToken = new WxAccessTokenKeeper ().getAccessToken ();
+			String accessToken = WxAccessTokenKeeper
+					.getDefaultInstance ()
+					.getAccessToken ();
 			System.out.println ( accessToken );
 			String url = String.format ( API_URL_FORMAT, accessToken );
 			String returnContent = Request.Post ( url )

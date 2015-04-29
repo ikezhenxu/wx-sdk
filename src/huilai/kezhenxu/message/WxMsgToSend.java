@@ -13,7 +13,7 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 	// 图片，音频，视频
 	protected String mediaId;
 
-	// 视频，音乐
+	// 视频，音乐，图文
 	protected String title;
 	protected String description;
 
@@ -22,6 +22,9 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 	protected String hqMusicUrl; // 高音质，wifi 优先播放
 	protected String thumbMediaId;
 
+	// 图文
+	protected String    picUrl;
+	protected String    url;
 	protected WxMsgType sendType;
 
 	public WxMsgToSend () {
@@ -92,6 +95,24 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 		this.sendType = sendType;
 	}
 
+	public String getPicUrl () {
+		return picUrl;
+	}
+
+	public WxMsgToSend setPicUrl ( String aPicUrl ) {
+		picUrl = aPicUrl;
+		return this;
+	}
+
+	public String getUrl () {
+		return url;
+	}
+
+	public WxMsgToSend setUrl ( String aUrl ) {
+		url = aUrl;
+		return this;
+	}
+
 	public String toXMLString ( final boolean withXMLRootNode ) {
 		StringBuilder builder = new StringBuilder ();
 		if ( withXMLRootNode ) {
@@ -147,12 +168,19 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 			       .append ( "]]>" )
 			       .append ( "</Description>" );
 		}
-		if ( musicUrl != null ) {
-			builder.append ( "<MusicUrl>" )
+		if ( url != null ) {
+			builder.append ( "<Url>" )
 			       .append ( "<![CDATA[" )
-			       .append ( musicUrl )
+			       .append ( url )
 			       .append ( "]]>" )
-			       .append ( "</MusicUrl>" );
+			       .append ( "</Url>" );
+		}
+		if ( picUrl != null ) {
+			builder.append ( "<PicUrl>" )
+			       .append ( "<![CDATA[" )
+			       .append ( picUrl )
+			       .append ( "]]>" )
+			       .append ( "</PicUrl>" );
 		}
 		if ( hqMusicUrl != null ) {
 			builder.append ( "<HQMusicUrl>" )

@@ -6,7 +6,6 @@ import org.apache.http.client.fluent.Request;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.logging.Logger;
 
 /**
  * Created by kezhenxu on 4/17/15.
@@ -19,20 +18,26 @@ public class WxAccessTokenKeeper implements Serializable {
 	public static final String API_URL_FORMAT =
 			"https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
 
-	protected WxFactory wxFactory;
+	protected static WxFactory wxFactory;
 
 	private static String accessToken;
 	private static long   birthTime;
 
-	public WxAccessTokenKeeper () {
-		this ( WxFactory.getDefault () );
+	private static WxAccessTokenKeeper SINGLETON;
+
+	private WxAccessTokenKeeper () {
 	}
 
-	public WxAccessTokenKeeper ( WxFactory wxFactory ) {
-		this.wxFactory = wxFactory;
-		Logger.getLogger ( "wx-sdk" ).info (
-				"APP_ID = " + wxFactory.getProperty ( WxFactory.APP_ID ) +
-						"\nSECRET = " + wxFactory.getProperty ( WxFactory.SECRET ) );
+	public synchronized static WxAccessTokenKeeper getDefaultInstance () {
+		return getInstance ( WxFactory.getDefault () );
+	}
+
+	public synchronized static WxAccessTokenKeeper getInstance ( WxFactory wxFactory ) {
+		WxAccessTokenKeeper.wxFactory = wxFactory;
+		if ( SINGLETON == null ) {
+			SINGLETON = new WxAccessTokenKeeper ();
+		}
+		return SINGLETON;
 	}
 
 	public String getAccessToken () {
