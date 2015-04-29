@@ -55,15 +55,17 @@ public class WxBaseMsg implements Serializable {
 		this.time = time;
 	}
 
-	public String toXMLString ( boolean withRootNode ) {
+	public String toXMLString ( final boolean withRootNode ) {
 		StringBuilder builder = new StringBuilder ();
 		if ( withRootNode ) {
 			builder.append ( "<xml>" );
 		}
-		builder.append ( "<MsgId>" )
-		       .append ( id == null ? "" : id )
-		       .append ( "</MsgId>" )
-		       .append ( "<ToUserName>" )
+		if ( id != null ) {
+			builder.append ( "<MsgId>" )
+			       .append ( id )
+			       .append ( "</MsgId>" );
+		}
+		builder.append ( "<ToUserName>" )
 		       .append ( "<![CDATA[" )
 		       .append ( to )
 		       .append ( "]]>" )
@@ -72,10 +74,12 @@ public class WxBaseMsg implements Serializable {
 		       .append ( "<![CDATA[" )
 		       .append ( from )
 		       .append ( "]]>" )
-		       .append ( "</FromUserName>" )
-		       .append ( "<CreateTime>" )
-		       .append ( time == null ? "" : time )
-		       .append ( "</CreateTime>" );
+		       .append ( "</FromUserName>" );
+		if ( time != null ) {
+			builder.append ( "<CreateTime>" )
+			       .append ( time )
+			       .append ( "</CreateTime>" );
+		}
 		if ( withRootNode ) {
 			builder.append ( "</xml>" );
 		}
