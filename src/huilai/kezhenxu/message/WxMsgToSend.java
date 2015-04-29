@@ -97,7 +97,28 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 		if ( withXMLRootNode ) {
 			builder.append ( "<xml>" );
 		}
-		builder.append ( super.toXMLString ( false ) );
+		builder.append ( super.toXMLString ( false ) )
+		       .append ( "<MsgType>" )
+		       .append ( "<![CDATA[" )
+		       .append ( sendType.getTypeName () )
+		       .append ( "]]>" )
+		       .append ( "</MsgType>" );
+		switch ( sendType ) {
+			case MUSIC:
+			case IMAGE:
+			case VIDEO:
+				builder.append ( "<" )
+				       .append ( sendType.getTypeName ().substring ( 0, 1 ).toUpperCase ()
+						                 + sendType.getTypeName ().substring ( 1 ) )
+				       .append ( ">" );
+				break;
+			case NEWS:
+				builder.append ( "<ArticleCount>" )
+				       .append ( 1 )
+				       .append ( "</ArticleCount>" )
+				       .append ( "<Articles>" )
+				       .append ( "<item>" );
+		}
 		if ( content != null ) {
 			builder.append ( "<Content>" )
 			       .append ( "<![CDATA[" )
@@ -147,11 +168,19 @@ public class WxMsgToSend extends WxBaseMsg implements Serializable {
 			       .append ( "]]>" )
 			       .append ( "</ThumbMediaId>" );
 		}
-		builder.append ( "<MsgType>" )
-		       .append ( "<![CDATA[" )
-		       .append ( sendType == null ? "" : sendType.getTypeName () )
-		       .append ( "]]>" )
-		       .append ( "</MsgType>" );
+		switch ( sendType ) {
+			case MUSIC:
+			case IMAGE:
+			case VIDEO:
+				builder.append ( "</" )
+				       .append ( sendType.getTypeName ().substring ( 0, 1 ).toUpperCase ()
+						                 + sendType.getTypeName ().substring ( 1 ) )
+				       .append ( ">" );
+				break;
+			case NEWS:
+				builder.append ( "</item>" )
+				       .append ( "</Articles>" );
+		}
 		if ( withXMLRootNode ) {
 			builder.append ( "</xml>" );
 		}
