@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.URLEncoder;
 
 /**
  * Created by kezhenxu on 5/8/15.
@@ -18,8 +19,8 @@ import java.io.IOException;
 public class WxAuth extends HttpServlet {
 
 	private String CODE_API_URL_FORMAT  = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
-	                                      "appid=%s&redirect_uri=http://hlai.xyz/auth/get-info.api&" +
-	                                      "response_type=code&scope=snsapi_userinfo&state=STATE";
+	                                      "appid=%s&redirect_uri=http%3a%2f%2fhlai.xyz%2fauth%2fget-info.api?%s&" +
+	                                      "response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
 	private String TOKEN_API_URL_FORMAT = "https://api.weixin.qq" +
 	                                      ".com/sns/oauth2/access_token?" +
 	                                      "appid=%s&secret=%s&code=%s&" +
@@ -38,10 +39,12 @@ public class WxAuth extends HttpServlet {
 	@Override
 	protected void doPost ( HttpServletRequest req, HttpServletResponse resp ) throws ServletException, IOException {
 		try {
+			req.setCharacterEncoding ( "UTF-8" );
 			String code = req.getParameter ( "code" );
 			if ( code == null ) {
 				resp.sendRedirect ( String.format ( CODE_API_URL_FORMAT,
-				                                    wxFactory.getProperty ( WxFactory.APP_ID ) ) );
+				                                    wxFactory.getProperty ( WxFactory.APP_ID ),
+				                                    URLEncoder.encode ( req.getQueryString (), "UTF-8" ) ) );
 				return;
 			}
 			String returnJsonString = new String ( Request.Get ( String.format ( TOKEN_API_URL_FORMAT,
