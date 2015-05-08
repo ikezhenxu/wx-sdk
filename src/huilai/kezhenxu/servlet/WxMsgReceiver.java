@@ -20,6 +20,7 @@ import java.io.IOException;
 public class WxMsgReceiver extends HttpServlet {
 
 	protected HttpServletResponse response;
+	protected HttpServletRequest  request;
 	protected WxAccessTokenKeeper tokenKeeper;
 
 	@Override
@@ -31,6 +32,7 @@ public class WxMsgReceiver extends HttpServlet {
 	protected void doPost ( HttpServletRequest request, HttpServletResponse response )
 			throws ServletException, IOException {
 		this.response = response;
+		this.request = request;
 
 		try {
 			WxMsgParser parser = new WxMsgParser ();
@@ -60,8 +62,7 @@ public class WxMsgReceiver extends HttpServlet {
 		send.setSendType ( WxMsgType.TEXT );
 		if ( content.matches ( regx ) ) {
 			send.setContent ( "您好，您的订购请求我们已经收到，我们会尽快为您配送货物，请注意查收！" );
-		}
-		else {
+		} else {
 			send.setContent ( "指令错误！" );
 		}
 		sender.send ( response, send );
@@ -81,9 +82,17 @@ public class WxMsgReceiver extends HttpServlet {
 				msgToSend.setTime ( System.currentTimeMillis () + "" );
 				msgToSend.setSendType ( WxMsgType.NEWS );
 				msgToSend.setTitle ( theArticle.getTitle () );
-				msgToSend.setUrl ( theArticle.getUrl ());
+				msgToSend.setUrl ( theArticle.getUrl () );
 				msgToSend.setDescription ( theArticle.getDigest () );
 				sender.send ( response, msgToSend );
+				break;
+			case VIEW:
+				try {
+					response.sendRedirect ( "http://hlai.xyz/wxsdk/auth/get-info.api" );
+					return;
+				} catch ( IOException e ) {
+					e.printStackTrace ();
+				}
 				break;
 		}
 	}
