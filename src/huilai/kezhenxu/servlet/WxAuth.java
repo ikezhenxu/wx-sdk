@@ -40,15 +40,16 @@ public class WxAuth extends HttpServlet {
 		try {
 			req.setCharacterEncoding ( "UTF-8" );
 			String code = req.getParameter ( "code" );
+			System.out.println ( "code=" + code );
 			if ( code == null ) {
 				String thisUrl = req.getRequestURL ()
 				                    .append ( '?' )
 				                    .append ( req.getQueryString () != null ? req.getQueryString () : "" )
 				                    .toString ();
-				System.out.println ("this-url:"+thisUrl);
-				System.out.println (String.format ( CODE_API_URL_FORMAT,
-				                                    wxFactory.getProperty ( WxFactory.APP_ID ),
-				                                    URLEncoder.encode ( thisUrl, "UTF-8" ) ));
+				System.out.println ( "this-url:" + thisUrl );
+				System.out.println ( String.format ( CODE_API_URL_FORMAT,
+				                                     wxFactory.getProperty ( WxFactory.APP_ID ),
+				                                     URLEncoder.encode ( thisUrl, "UTF-8" ) ) );
 				resp.sendRedirect ( String.format ( CODE_API_URL_FORMAT,
 				                                    wxFactory.getProperty ( WxFactory.APP_ID ),
 				                                    URLEncoder.encode ( thisUrl, "UTF-8" ) ) );
