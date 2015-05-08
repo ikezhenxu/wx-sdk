@@ -25,20 +25,21 @@ public class WxMaterialList {
 	}
 
 	public JSONObject list ( String type,
-	                               int offset,
-	                               int count,
-	                               WxAccessTokenKeeper aTokenKeeper ) {
+	                         int offset,
+	                         int count,
+	                         WxAccessTokenKeeper aTokenKeeper ) {
 		try {
 			String url = String.format ( API_URL_FORMAT, aTokenKeeper.getAccessToken () );
 			JSONObject jsonObject = new JSONObject ();
 			jsonObject.put ( "type", type );
 			jsonObject.put ( "offset", offset );
 			jsonObject.put ( "count", count );
-			String responseJSONString = Request.Post ( url )
-			                                   .bodyString ( jsonObject.toJSONString (), ContentType.APPLICATION_JSON )
-			                                   .execute ()
-			                                   .returnContent ()
-			                                   .asString ();
+			String responseJSONString = new String (
+					Request.Post ( url )
+					       .bodyString ( jsonObject.toJSONString (), ContentType.APPLICATION_JSON )
+					       .execute ()
+					       .returnContent ()
+					       .asBytes (), "UTF-8" );
 			return JSONObject.parseObject ( responseJSONString );
 		} catch ( Exception e ) {
 			e.printStackTrace ();

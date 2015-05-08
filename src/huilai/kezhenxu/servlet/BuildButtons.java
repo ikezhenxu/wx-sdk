@@ -53,9 +53,15 @@ public class BuildButtons extends HttpServlet {
 				.setName ( "建议反馈" )
 				.setKey ( "feedback" )
 				.setType ( WxButtonType.CLICK );
+		WxButton binding = new WxButton ()
+				.setName ( "绑定账户" )
+				.setKey ( "binding" )
+				.setType ( WxButtonType.VIEW )
+				.setUrl ( "http://www.hlai.xyz/wxsdk/base/signature.api" );
 		wrapper.add ( newest, clazz, more );
 		more.addSubMenu ( about )
-		    .addSubMenu ( feedback );
+		    .addSubMenu ( feedback )
+		    .addSubMenu ( binding );
 		WxButtonBuilder builder    = new WxButtonBuilder ();
 		WxResponse      wxResponse = builder.buildButtons ( wrapper );
 		System.out.println ( wxResponse );
