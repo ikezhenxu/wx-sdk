@@ -1,5 +1,6 @@
 package huilai.kezhenxu.servlet;
 
+import com.alibaba.fastjson.JSONObject;
 import huilai.kezhenxu.WxFactory;
 import huilai.kezhenxu.basic.WxAccessTokenKeeper;
 import org.apache.http.client.fluent.Request;
@@ -24,6 +25,8 @@ public class WxAuth extends HttpServlet {
 	private String TOKEN_API_URL_FORMAT = "https://api.weixin.qq.com/sns/oauth2/access_token?" +
 	                                      "appid=%s&secret=%s&code=%s&" +
 	                                      "grant_type=authorization_code";
+	private String INFO_API_URL_FORMAT  = "https://api.weixin.qq.com/sns/userinfo?" +
+	                                      "access_token=%s&openid=%s";
 
 	private WxFactory           wxFactory;
 	private WxAccessTokenKeeper wxAccessTokenKeeper;
@@ -66,6 +69,15 @@ public class WxAuth extends HttpServlet {
 			                                              .returnContent ()
 			                                              .asBytes (), "UTF-8" );
 			System.out.println ( returnJsonString );
+			JSONObject theJSONObject = JSONObject.parseObject ( returnJsonString );
+			String info = new String ( Request.Get ( String.format ( INFO_API_URL_FORMAT,
+			                                                         theJSONObject.getString ( "access_token" ),
+			                                                         theJSONObject.getString ( "openid" ) ) )
+			                                  .execute ()
+			                                  .returnContent ()
+			                                  .asBytes (), "UTF-8" );
+			JSONObject infoJSON = JSONObject.parseObject ( info );
+			System.out.println ( infoJSON.toJSONString () );
 		} catch ( Exception e ) {
 			e.printStackTrace ();
 		}
