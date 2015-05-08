@@ -20,7 +20,7 @@ public class WxAuth extends HttpServlet {
 
 	private String CODE_API_URL_FORMAT  = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
 	                                      "appid=%s&redirect_uri=%s&" +
-	                                      "response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+	                                      "response_type=code&scope=snsapi_userinfo&state=1#wechat_redirect";
 	private String TOKEN_API_URL_FORMAT = "https://api.weixin.qq.com/sns/oauth2/access_token?" +
 	                                      "appid=%s&secret=%s&code=%s&" +
 	                                      "grant_type=authorization_code";
