@@ -18,7 +18,7 @@ import java.io.IOException;
 public class WxAuth extends HttpServlet {
 
 	private String CODE_API_URL_FORMAT  = "https://open.weixin.qq.com/connect/oauth2/authorize?" +
-	                                      "appid=%s&redirect_uri=http://hlai.xyz&" +
+	                                      "appid=%s&redirect_uri=http://hlai.xyz/auth/get-info.api&" +
 	                                      "response_type=code&scope=snsapi_userinfo&state=STATE";
 	private String TOKEN_API_URL_FORMAT = "https://api.weixin.qq" +
 	                                      ".com/sns/oauth2/access_token?" +
@@ -40,7 +40,8 @@ public class WxAuth extends HttpServlet {
 		try {
 			String code = req.getParameter ( "code" );
 			if ( code == null ) {
-				resp.sendRedirect ( String.format ( CODE_API_URL_FORMAT, wxAccessTokenKeeper.getAccessToken () ) );
+				resp.sendRedirect ( String.format ( CODE_API_URL_FORMAT,
+				                                    wxFactory.getProperty ( WxFactory.APP_ID ) ) );
 				return;
 			}
 			String returnJsonString = new String ( Request.Get ( String.format ( TOKEN_API_URL_FORMAT,
