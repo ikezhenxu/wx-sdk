@@ -41,6 +41,7 @@ public class WxAuth extends HttpServlet {
 			String code = req.getParameter ( "code" );
 			if ( code == null ) {
 				resp.sendRedirect ( String.format ( CODE_API_URL_FORMAT, wxAccessTokenKeeper.getAccessToken () ) );
+				return;
 			}
 			String returnJsonString = new String ( Request.Get ( String.format ( TOKEN_API_URL_FORMAT,
 			                                                                     wxFactory.getProperty (
