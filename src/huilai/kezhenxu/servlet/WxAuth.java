@@ -45,6 +45,10 @@ public class WxAuth extends HttpServlet {
 				                    .append ( '?' )
 				                    .append ( req.getQueryString () != null ? req.getQueryString () : "" )
 				                    .toString ();
+				System.out.println ("this-url:"+thisUrl);
+				System.out.println (String.format ( CODE_API_URL_FORMAT,
+				                                    wxFactory.getProperty ( WxFactory.APP_ID ),
+				                                    URLEncoder.encode ( thisUrl, "UTF-8" ) ));
 				resp.sendRedirect ( String.format ( CODE_API_URL_FORMAT,
 				                                    wxFactory.getProperty ( WxFactory.APP_ID ),
 				                                    URLEncoder.encode ( thisUrl, "UTF-8" ) ) );
